@@ -12,6 +12,7 @@ gulp.task('webpack', () => {
 // 编译Less -> css
 gulp.task('less', () => {
   const webpack = require('gulp-less')
+  const config = require("./webpack.config.js");
   gulp.src('./less/*.less')
     .pipe(less())
     .pipe(gulp.dest('../www/css'));

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- 
 /*
  *
  *                                         ,s555SB@@&                          
@@ -31,17 +32,33 @@
  *            .A3hH@#5S553&@@#h   i:i9S          #@@@@@@@@@@@@@@@@@@@@@@@@@A.
  *
  *
- *                              
- */
-
+ **/
+ -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    
+    <!-- Title -->
+    <div class="title">
+        <h1>数独游戏</h1>
+    </div>
+    <!-- 9×9 -->
+    <div id="container" class="container grid"></div>    
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <div class="buttons">
+            <button type="button" id="check">检查</button>
+            <button type="button" id="reset">重置</button>
+            <button type="button" id="clean">清理</button>
+            <button type="button" id="rebuild">重建</button>
+        </div>
+    </div>
+    <!-- Alart -->
+    <div id="popupNumbers" class="grid popup-num hidden"></div>
 </body>
 </html>
