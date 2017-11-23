@@ -19,6 +19,7 @@ body{
 .title h1{
     margin: 0;
     padding: 0;
+    font-weight: normal;
 }
 .hidden{
     display: none;
@@ -35,10 +36,10 @@ body{
 }
 
 .row_g_bottom{
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
 }
 .col_g_right{
-    border-right-width: 1px;
+    border-right-width: 2px;
 }
 
 .row span{
@@ -82,12 +83,14 @@ button{
     float: left; 
     width: 25%;
     */
+    padding: 0 1.3rem 0 1.3rem;
     height: 3rem;
     font-size: 1.3rem;
     color: white;
     border: 1rpm solid #CCC;
     background-color: transparent;
     border-right-width: 0;
+    font-family: "Microsoft YaHei";
 }
 button:last-child{
     border-right-width: 1px;
