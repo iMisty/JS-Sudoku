@@ -8,7 +8,7 @@ gulp.task('webpack', () => {
     .pipe(webpack(config))
     .pipe(gulp.dest('../www/js'));
 })
-
+/* 
 // 编译Less -> css
 gulp.task('less', () => {
   const webpack = require('gulp-less')
@@ -17,5 +17,6 @@ gulp.task('less', () => {
     .pipe(less())
     .pipe(gulp.dest('../www/css'));
 })
+ */
 
-gulp.task('default', ['webpack', 'less'])
+gulp.task('default', ['webpack'])
