@@ -19,4 +19,9 @@ gulp.task('less', () => {
 })
  */
 
-gulp.task('default', ['webpack'])
+/* 自动编译 */
+gulp.task('default', ['webpack', 'less']);
+gulp.task('watch', () => {
+  gulp.watch('less/**/*.less',['less']);
+  gulp.watch('js/**/*.js', ['webpack']);
+});
