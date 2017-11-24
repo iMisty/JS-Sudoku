@@ -21,6 +21,11 @@ const matrixToolkit = {
             [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
+    },
+
+    // TODO 检查是否允许填入n
+    checkFillable() {
+        return true;
     }
 };
 

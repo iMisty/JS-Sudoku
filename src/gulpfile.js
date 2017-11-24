@@ -20,7 +20,7 @@ gulp.task('less', () => {
  */
 
 /* 自动编译 */
-gulp.task('default', ['webpack']);
+gulp.task('default', ['webpack']); // 第二个参数为less，此处删除
 gulp.task('watch', () => {
   // gulp.watch('less/**/*.less',['less']);
   gulp.watch('js/**/*.js', ['webpack']);
