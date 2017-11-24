@@ -1,7 +1,7 @@
 // 生成数独解决方案
 const Toolkit = require('./toolkit');
 
-class Generator {
+module.exports = class Generator {
   generate(){
       while (!this.interenalGenerate()) {
         // TODO
@@ -64,6 +64,6 @@ class Generator {
   }
 }
 
-const generator = new Generator();
+/* const generator = new Generator();
 generator.generate();
-console.log(generator.matrix);
+console.log(generator.matrix); */
