@@ -20,8 +20,8 @@ gulp.task('less', () => {
  */
 
 /* 自动编译 */
-gulp.task('default', ['webpack', 'less']);
+gulp.task('default', ['webpack']);
 gulp.task('watch', () => {
-  gulp.watch('less/**/*.less',['less']);
+  // gulp.watch('less/**/*.less',['less']);
   gulp.watch('js/**/*.js', ['webpack']);
 });
