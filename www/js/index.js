@@ -56,16 +56,20 @@
 
 	// 生成九宫格
 	const Toolkit = __webpack_require__(2);
-	const Generator = __webpack_require__(3);
+	// const Generator = require("../core/generator");
+	const Sudoku = __webpack_require__(3);
 	
 	class Grid {
 	  constructor (container) {
 	    this._$container = container;
 	  }
 	  build () {
-	    const generator = new Generator();
-	    generator.generate();
-	    const matrix = generator.matrix;
+	    const sudoku = new Sudoku();
+	    sudoku.make();
+	    const matrix = sudoku.puzzleMatrix;
+	    // const generator = new Generator();
+	    // generator.generate();
+	    // const matrix = generator.matrix;
 	
 	    const rowGroupClasses = ['row_g_top', 'row_g_middle', 'row_g_bottom'];
 	    const colGroupClasses = ['col_g_top', 'col_g_center', 'col_g_right'];
@@ -74,6 +78,7 @@
 	      .map((cellValue, colIndex) => {
 	        return $('<span>')
 	          .addClass(colGroupClasses[colIndex % 3])
+	          .addClass(cellValue ? "fixed" : "empty")
 	          .text(cellValue)
 	      })
 	    );
@@ -187,6 +192,35 @@
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// 生成游戏
+	
+	// 1.生成完成的解決方案
+	// 2.随机去除部分数据
+	
+	const Generator  = __webpack_require__(4);
+	
+	module.exports = class sudoku {
+	
+	    constructor() {
+	        // 完整的解决方案
+	        const generator = new Generator();
+	        generator.generate();
+	        this.solutionMatrix = generator.matrix;
+	    }
+	
+	    make(level = 5) {
+	        // const shouldRid = Math.random() * 9 < level;
+	        // 生成谜盘
+	        this.puzzleMatrix = this.solutionMatrix.map(row => {
+	            return row.map(cell => Math.random() * 9 < level ? 0 : cell);
+	        });
+	    }
+	}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 生成数独解决方案
