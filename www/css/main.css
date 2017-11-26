@@ -61,6 +61,12 @@ body{
     border-right-width: 2px;
 
 }
+.row .fixed{
+    background-color: #EEE;
+}
+.row .empty{
+    color: white;
+}
 
 .dashboard{
     position: absolute;
