@@ -111,10 +111,10 @@ button:last-child{
     line-height: 40px;
 }
 
-.mark1{
+.mark1,.mark1 .empty {
     background: lightblue;
 }
-.mark2{
+.mark2,.mark2 .empty{
     background: lightgreen;
 }
 .error{

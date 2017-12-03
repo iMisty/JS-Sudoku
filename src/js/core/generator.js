@@ -8,7 +8,7 @@ module.exports = class Generator {
       }
   }
 
-  interenalGenerate () {
+  interenalGenerate() {
     this.matrix = Toolkit.matrix.makeMatrix();
     this.orders = Toolkit.matrix.makeMatrix()
         .map(row => row.map((v, i) => i))
@@ -27,11 +27,11 @@ module.exports = class Generator {
    * 2.单独将npm降级到3.xx版本
    * 3.使用尾递归 // TODO
    */
-  fillNumber (n) {
+  fillNumber(n) {
     return this.fillNumber(n, 0);
   }
 
-  fillRow (n, rowIndex) {
+  fillRow(n, rowIndex) {
     if (rowIndex > 8) {
       return true;
     }

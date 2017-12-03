@@ -8,10 +8,14 @@ class Grid {
   constructor (container) {
     this._$container = container;
   }
-  build () {
+  build() {
     const sudoku = new Sudoku();
     sudoku.make();
     const matrix = sudoku.puzzleMatrix;
+    /* 测试用代码，直接完成游戏
+     * const matrix = sudoku.soultionMatrix;
+     */
+
     // const generator = new Generator()
     // generator.generate()
     // const matrix = generator.matrix
@@ -38,7 +42,7 @@ class Grid {
     this._$container.append($divArray)
   }
 
-  layout () {
+  layout() {
     const width = $('span:first', this._$container).width()
     $('span', this._$container)
       .height(width)
@@ -49,7 +53,7 @@ class Grid {
   }
 
   // 检查用户解谜结果
-  check () {
+  check() {
     const data = this._$container.children()
       .map((rowIndex, div) => {
         return $(div).children()
@@ -78,20 +82,31 @@ class Grid {
       });
   }
   // 重置用户输入
-  reset () {}
+  reset() { 
+    this._$container.find("span:not(.fixed)")
+      .removeClass("error mark1 mark2")
+      .addClass("empty")
+      .text(0);
+   }
   // 推倒重来
-  clear () {}
+  clear() {
+    this._$container.find("span.error")
+      .removeClass("error");
+  }
   // 重新开始新的一局
-  rebuild () {
+  rebuild() {
     this._$container.empty();
     this.build();
     this.layout();
   }
 
-  bindPopup (popupNumbers) {
+  bindPopup(popupNumbers) {
     this._$container.on('click', 'span', e => {
-      const $cell = $(e.target)
-      popupNumbers.popup($cell)
+      const $cell = $(e.target);
+      if ($cell.is(".fixed")) {
+        return;
+      }
+      popupNumbers.popup($cell);
     });
   }
 }
