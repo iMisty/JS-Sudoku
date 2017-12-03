@@ -4,7 +4,8 @@ function checkArray(array) {
     const length = array.length;
     const marks = new Array(length);
     marks.fill(true);
-    for (let i = 0; i < length-1; i++) {
+    // 修复无法检查最后一个数组为0的情况
+    for (let i = 0; i < length; i++) {
         if (!marks[i]){
             continue;
         }
@@ -15,7 +16,7 @@ function checkArray(array) {
             continue;
         }
         // 是否有重复
-        for (let j = i + 1;j < length;j++) {
+        for (let j = i + 1;j < length-1;j++) {
             if (v === array[j]) {
                 marks[i] = marks[j] = false;
             }
