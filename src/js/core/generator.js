@@ -25,6 +25,7 @@ module.exports = class Generator {
    * 解决方法：
    * 1.使用node 8以下的版本
    * 2.单独将npm降级到3.xx版本
+   * 3.使用尾递归 // TODO
    */
   fillNumber (n) {
     return this.fillNumber(n, 0);
