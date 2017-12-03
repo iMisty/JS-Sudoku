@@ -101,7 +101,10 @@ button{
 button:last-child{
     border-right-width: 1px;
 }
-
+.popup-num{
+    position: absolute;
+    padding-left: 0;
+}
 .popup-num span{
     width: 40px;
     height: 40px;
