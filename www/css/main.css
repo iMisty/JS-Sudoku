@@ -101,3 +101,16 @@ button{
 button:last-child{
     border-right-width: 1px;
 }
+
+.popup-num span{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.mark1{
+    background: lightpink;
+}
+.mark2{
+    background: lightgreen;
+}
