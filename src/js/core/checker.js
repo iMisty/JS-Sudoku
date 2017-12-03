@@ -30,7 +30,7 @@ const Toolkit = require("./toolkit");
  *  处理：对matrix的行、列、宫进行检查，并填写marks
  *  输出：检查是否成功、marks
  */
-class Checker {
+module.exports =  class Checker {
     constructor(matrix) {
         this._matrix = matrix;
         this._matrixMarks = Toolkit.matrix.makeMatrix(true);
