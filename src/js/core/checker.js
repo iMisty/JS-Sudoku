@@ -85,11 +85,12 @@ module.exports =  class Checker {
 
     checkBoxes() {
         for (boxIndex = 0;boxIndex < 9;boxIndex++) {
-            const boxes = Toolkit.box.getBoxCells(boxIndex);
+            const boxes = Toolkit.box.getBoxCells(this._matrix,boxIndex);
             const marks = checkArray(boxes);
             for (cellIndex = 0;cellIndex < 9;cellIndex++) {
                 if (!marks[cellIndex]) {
-                    const {rowIndex,colIndex} = Toolkit.box.convertFromBoxIndex(boxIndex, cellIndex);
+                    const {rowIndex,colIndex}
+                         = Toolkit.box.convertFromBoxIndex(boxIndex, cellIndex);
 
                     this._matrixMarks[rowIndex][colIndex] = false;                    
                 }

@@ -1,23 +1,23 @@
 // 生成九宫格
-const Toolkit = require('../core/toolkit')
+const Toolkit = require('../core/toolkit');
 // const Generator = require("../core/generator")
-const Sudoku = require('../core/sudoku')
-const Checker = require('../core/checker')
+const Sudoku = require('../core/sudoku');
+const Checker = require('../core/checker');
 
 class Grid {
   constructor (container) {
-    this._$container = container
+    this._$container = container;
   }
   build () {
-    const sudoku = new Sudoku()
-    sudoku.make()
-    const matrix = sudoku.puzzleMatrix
+    const sudoku = new Sudoku();
+    sudoku.make();
+    const matrix = sudoku.puzzleMatrix;
     // const generator = new Generator()
     // generator.generate()
     // const matrix = generator.matrix
 
-    const rowGroupClasses = ['row_g_top', 'row_g_middle', 'row_g_bottom']
-    const colGroupClasses = ['col_g_top', 'col_g_center', 'col_g_right']
+    const rowGroupClasses = ['row_g_top', 'row_g_middle', 'row_g_bottom'];
+    const colGroupClasses = ['col_g_top', 'col_g_center', 'col_g_right'];
 
     const $cells = matrix.map(rowValues => rowValues
       .map((cellValue, colIndex) => {
@@ -56,9 +56,26 @@ class Grid {
           .map((colIndex, span) => $parseInt($(span).text()) || 0)
       })
       .toArray()
-      .map($data => $data.toArray())
+      .map($data => $data.toArray());
 
-    const checker = new Checker(data)
+    const checker = new Checker(data);
+    if (checker.check()) {
+      return true;
+    }
+
+    const marks = checker.matrixMarks;
+    $this._$container.children()
+      .each((rowIndex, div) => {
+        $(div).children().each((colIndex, span) => {
+          const $span = $(span);
+          if ($span.is('fixed') || marks[rowIndex][colIndex]) {
+            $span.removeClass('error');
+          } else {
+            $(span).addClass('error');            
+          }
+
+        });
+      });
   }
   // 重置用户输入
   reset () {}
@@ -66,17 +83,17 @@ class Grid {
   clear () {}
   // 重新开始新的一局
   rebuild () {
-    this._$container.empty()
-    this.build()
-    this.layout()
+    this._$container.empty();
+    this.build();
+    this.layout();
   }
 
   bindPopup (popupNumbers) {
     this._$container.on('click', 'span', e => {
       const $cell = $(e.target)
       popupNumbers.popup($cell)
-    })
+    });
   }
 }
 
-module.exports = Grid
+module.exports = Grid;
