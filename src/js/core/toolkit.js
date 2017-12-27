@@ -1,35 +1,39 @@
-/* 
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/*
  * 矩阵和数组
  */
-const matrixToolkit = {
-    makeRow (v = 0) {
-    const array = new Array(9)
-    array.fill(v)
-    return array
-    },
-
-    makeMatrix(v = 0) {
-        return Array.from({ length: 9 }, () => this.makeRow(v));
-    },
-/* 
- * Fisher-Yates
- */
-    shuffle(array) {
-        const endIndex = array.length - 2;
-        for (let i = 0; i <= endIndex; i++) {
-            const j = i + Math.floor(Math.random() * (array.length - i));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
+var matrixToolkit = {
+    makeRow: function (v) {
+        if (v === void 0) { v = 0; }
+        var array = new Array(9);
+        array.fill(v);
         return array;
     },
-
+    makeMatrix: function (v) {
+        var _this = this;
+        if (v === void 0) { v = 0; }
+        return Array.from({ length: 9 }, function () { return _this.makeRow(v); });
+    },
+    /*
+     * Fisher-Yates
+     */
+    shuffle: function (array) {
+        var endIndex = array.length - 2;
+        for (var i = 0; i <= endIndex; i++) {
+            var j = i + Math.floor(Math.random() * (array.length - i));
+            _a = [array[j], array[i]], array[i] = _a[0], array[j] = _a[1];
+        }
+        return array;
+        var _a;
+    },
     // TODO 检查是否允许填入n
-    checkFillable(matrix, n, rowIndex, colIndex) {
-        const row = matrix[rowIndex];
-        const column = this.makeRow().map((v, i) => matrix[i][colIndex]);
-        const { boxIndex } = boxToolkit.convertToBoxIndex(rowIndex, colIndex);
-        const box = boxToolkit.getBoxCells(matrix, boxIndex);
-        for (let i = 0; i < 9; i++) {
+    checkFillable: function (matrix, n, rowIndex, colIndex) {
+        var row = matrix[rowIndex];
+        var column = this.makeRow().map(function (v, i) { return matrix[i][colIndex]; });
+        var boxIndex = boxToolkit.convertToBoxIndex(rowIndex, colIndex).boxIndex;
+        var box = boxToolkit.getBoxCells(matrix, boxIndex);
+        for (var i = 0; i < 9; i++) {
             if (row[i] === n || column[i] === n || box[i] === n) {
                 return false;
             }
@@ -37,43 +41,53 @@ const matrixToolkit = {
         }
     }
 };
-
 /* 宫坐标系工具 */
-const boxToolkit = {
-    getBoxCells(matrix, boxIndex) {
-        const startRowIndex = Math.floor(boxIndex / 3) * 3;
-        const startColIndex = boxIndex % 3 * 3;
-        const result = [];
-        for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
-            const rowIndex = startRowIndex + Math.floor(cellIndex / 3);
-            const colIndex = startRowIndex + cellIndex % 3;
+var boxToolkit = {
+    getBoxCells: function (matrix, boxIndex) {
+        var startRowIndex = Math.floor(boxIndex / 3) * 3;
+        var startColIndex = boxIndex % 3 * 3;
+        var result = [];
+        for (var cellIndex = 0; cellIndex < 9; cellIndex++) {
+            var rowIndex = startRowIndex + Math.floor(cellIndex / 3);
+            var colIndex = startRowIndex + cellIndex % 3;
             result.push(matrix[rowIndex][colIndex]);
         }
         return result;
     },
-
-    convertToBoxIndex(rowIndex, colIndex) {
+    convertToBoxIndex: function (rowIndex, colIndex) {
         return {
             boxIndex: Math.floor(rowIndex / 3) * 3 + Math.floor(colIndex / 3),
             cellIndex: rowIndex % 3 * 3 + colIndex % 3
         };
     },
-
-    convertFromBoxIndex(boxIndex, cellIndex) {
+    convertFromBoxIndex: function (boxIndex, cellIndex) {
         return {
             rowIndex: Math.floor(boxIndex / 3) * 3 + Math.floor(cellIndex / 3),
             colIndex: boxIndex % 3 * 3 + cellIndex % 3
         };
     }
 };
-
-module.exports = class Toolkit {
-    // 矩阵和数据相关工具
-    static get matrix() {
-        return matrixToolkit;
+var Toolkit = /** @class */ (function () {
+    function Toolkit() {
     }
-    // 宫坐标系相关工具
-    static get box() {
-        return boxToolkit;
-    }
-};
+    Object.defineProperty(Toolkit, "matrix", {
+        // 矩阵和数据相关工具
+        get: function () {
+            return matrixToolkit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Toolkit, "box", {
+        // 宫坐标系相关工具
+        get: function () {
+            return boxToolkit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Toolkit;
+}());
+exports.Toolkit = Toolkit;
+;
+exports.default = Toolkit;
