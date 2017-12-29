@@ -1,58 +1,62 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // 处理弹出操作面板
-
-module.exports = class popupNumbers{
-    constructor($panel) {
+var popupNumbers = /** @class */ (function () {
+    function popupNumbers($panel) {
+        var _this = this;
         this._$panel = $panel.hide().removeClass("hidden");
-
-        this._$panel.on("click", "span", e =>{
-            const $cell = this._$targetCell;
-            const $span = $(e.target);
-            
+        this._$panel.on("click", "span", function (e) {
+            var $cell = _this._$targetCell;
+            var $span = $(e.target);
             if ($span.hasClass("mark1")) {
                 if ($cell.hasClass("mark1")) {
                     $cell.removeClass("mark1");
-                } else {
+                }
+                else {
                     $cell.removeClass("mark2")
                         .addClass("mark1");
                 }
                 // 回填样式
-            } 
+            }
             else if ($span.hasClass("mark2")) {
                 if ($span.hasClass("mark2")) {
                     if ($cell.hasClass("mark2")) {
                         $cell.removeClass("mark2");
-                    } else {
+                    }
+                    else {
                         $cell.removeClass("mark1")
                             .addClass("mark2");
                     }
-                // 回填样式
+                    // 回填样式
                 }
-            } 
+            }
             else if ($span.hasClass("empty")) {
                 // 取消数字和mark
                 $cell.text(0)
                     .addClass("empty");
-            } 
+            }
             else {
                 // 回填数字1~9
                 $cell.removeClass("empty")
-                    .text($span.text());                
+                    .text($span.text());
             }
-            this.hide();
+            _this.hide();
         });
     }
-
-    popup($cell) {
-        this._$targetCell = $cell; 
-        const {left, top} = $cell.position();
+    popupNumbers.prototype.popup = function ($cell) {
+        this._$targetCell = $cell;
+        var _a = $cell.position(), left = _a.left, top = _a.top;
         this._$panel.css({
-            left: `${left}px`,
-            top: `${top}px`
+            left: left + "px",
+            top: top + "px"
         })
-        .show();
-    }
-
-    hide() {
+            .show();
+    };
+    popupNumbers.prototype.hide = function () {
         this._$panel.hide();
-    }
-};
+    };
+    return popupNumbers;
+}());
+exports.popupNumbers = popupNumbers;
+;
+exports.default = popupNumbers;
